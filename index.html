@@ -15,6 +15,9 @@
         
         margin: 0;
     }
+    button:hover{
+        cursor: pointer;
+    }
     .container{
         background-color: #D8D8D8;
         width: 87%;
@@ -34,7 +37,7 @@
         font-size: 20px;
     }
     img{
-        
+        margin-top: 20px;
         width: 90%;
     }
     .yellow{
@@ -61,13 +64,21 @@
         font-weight: bold;
     }
     .options{
-        width: 90%;
+        width: 95%;
         justify-content: space-around;
         align-items: center;
         margin: auto;
         margin-top: 30px;
         padding: 10px;
         display: flex;
+    }
+    .index{
+        width: 95%;
+        justify-content: center;
+        margin: auto;
+        margin-top: 20px;
+        display: flex;
+        padding: 10px;
     }
     .r1{
         padding: 10px 15px 10px 15px;
@@ -77,6 +88,7 @@
         border-radius: 3px;
         border: none;
     }
+    
     #year{
         width: 40%;
     }
@@ -101,6 +113,127 @@
     .red{
         background-color: #EE624F;
     }
+    #type{
+        border-top-right-radius: 0 ;
+        border-bottom-right-radius: 0;
+        background-color: #9D9FA0;
+        color: white;
+        font-weight: normal;
+        width: 50%;
+    }
+    #val{
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        width: 45%;
+        font-weight: normal;
+        text-align: center;
+    }
+    #val:focus{
+        outline: none;
+    }
+    #val::placeholder{
+        font-size: 15px;
+        font-weight: normal;
+        color: #BAC0CE;
+    }
+    #val:disabled{
+        background-color: #F3F3F3
+    }
+    .warning{
+        color: red;
+        font-weight: 600;
+        font-size: 15px;
+        margin-bottom: -20px;
+        margin-top: 40px;
+    }
+    .extra{
+        display: flex;
+        width: 90%;
+        margin: auto;
+        justify-content: space-around;
+        padding: 10px;
+        margin-top: -10px;
+    }
+    .adjust{
+        width: 35%;
+        opacity: 0;
+    }
+    .b2{
+        background-color: transparent;
+        border: none;
+        padding: 8px 15px;
+        border: 1px solid;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+    .green{
+        color: #59D3A6;
+        border-color: #59D3A6;
+    }
+    .bluebottom{
+        color: #26B4FF;
+        border-color: #26B4FF;
+        margin-right: -10px;
+    }
+    #details{
+        margin-top: 30px;
+        background-color: white;
+        border: 2px solid #26B4FF;
+        border-radius: 5px;
+        padding: 0px 10px;
+        padding-bottom: 10px;
+    }
+    .d_title{
+        color: #4E5155;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 0px;
+        
+    }
+    .d_label{
+        margin: 20px 0;
+        font-weight: bold;
+        font-size: 14px;
+        color: #4E5155;
+        
+    }
+    .d_val{
+        color: #4E5155;
+        margin: 20px 0;
+        font-size: 14px;
+        justify-content: center;
+        align-items: center;
+    }
+    .arrow{
+        width: 9px;
+        height: 13px;
+        background-size: contain;
+        display: flex;
+        margin-right: 10px;
+        margin-top: 22px;
+    }
+    .sub{
+        display: flex;
+        padding: 0;
+        margin: -15px 0;
+        
+    }
+    .grade{
+        
+        margin: 15px 0;
+        background-color: #E7E8E8;
+        width: 18px;
+        text-align: center;
+        border-radius: 3px;
+        font-size: 13px;
+        font-weight: bold;
+        color: #4E5155;
+        padding: 2px 0;
+    }
+    .mark{
+        width: 32px;
+    }
+    
 
 </style>
 <body>
@@ -117,38 +250,171 @@
                     
                     <span id="tamil">பரீட்சைப் பெறுபேறுகள் இலங்கை அரசாங்கத்தின் சொத்தாகும். உரிய அனுமதியின்றி பரீட்சார்த்திகளுக்கு உரியதல்லாத பெறுபேறுகளை பிரதிசெய்தல், தம்வசம் வைத்திருத்தல், இணையத்தளமொன்றிற்குள்ளோ அல்லது சமூக வலைத்தளங்களிலோ பதிவேற்றம் செய்தல் அல்லது வேறு வடிவங்களில் பிரசுரித்தல் என்பன முற்றாகத் தடைசெய்யப்பட்டுள்ளதுடன் தண்டனைக்குரிய குற்றமுமாகும்.</span></p>
             </div>
+            <center><p class="warning" id="w" hidden>Invalid year</p></center>
             <div class="options">
-                <select name="exam" id="exam" class="r1">
+                <select name="exam" id="exam" class="r1" onchange="enableStuff()">
                     <option value="" selected>Select the exam</option>
                     <option value="invalid">G.C.E (A/L) EXAMINATION</option>
                     <option value="valid">G.C.E (O/L) EXAMINATION</option>
                 </select>
-                <select name="year" id="year" class="r1" selected>
-                    <option value="">Select the year</option>
+                <select name="year" id="year" class="r1" disabled>
+                    <option value="" selected>Select the year</option>
                     <option value="invalid">2022 / 2023</option>
                     <option value="valid">2023 / 2024</option>
                 </select>
             </div>
+            <div class="index">
+                <select name="type" id="type" class="r1" disabled>
+                    <option value="valid" selected>Index</option>
+                    <option value="valid">NIC</option>
+                </select>
+                <input type="text" id="val" class="r1" placeholder="Enter your index" disabled>
+            </div>
+            
             <br>
+            
             <center><button onclick="validateForm()" class="b1 blue">Submit</button></center>
-            <center> <button class="b1 red">Reset</button></center>
+            <center> <button onclick="resetForm()" class="b1 red">Reset</button></center>
+
+            <div id="details" hidden>
+                <p class="d_title">G.C.E (A/L) EXAMINATION - ( 2023 / 2024 )</p>
+                <br>
+                <p class="d_label">Examination</p>
+                <p class="d_val">G.C.E. (A/L) EXAMINATION</p>
+
+                <p class="d_label">Year</p>
+                <p class="d_val">2023 / 2024</p>
+
+                <p class="d_label">Name</p>
+                <p class="d_val">AMPAGALA ARACHCHIGE CHATHURYA VISANKA AMPAGALA</p>
+
+                <p class="d_label">Index Number</p>
+                <p class="d_val">6328180</p>
+
+                <p class="d_label">NIC Number</p>
+                <p class="d_val">200433201442</p>
+
+                <p class="d_label">District Rank</p>
+                <p class="d_val">G.C.E. (A/L) EXAMINATION</p>
+
+                <p class="d_label">Island Rank</p>
+                <p class="d_val">G.C.E. (A/L) EXAMINATION</p>
+
+                <p class="d_label">Z-Score</p>
+                <p class="d_val">G.C.E. (A/L) EXAMINATION</p>
+
+                <p class="d_label">Subject Stream</p>
+                <p class="d_val">COMMERCE</p>
+
+                <div class="sub">
+                    <img src="img/arrow.png" alt="arrow" class="arrow">
+                    <p class="d_val"></b> ECONOMICS</p>
+                </div>
+                <div class="grade">C</div>
+
+                <div class="sub">
+                    <img src="img/arrow.png" alt="arrow" class="arrow">
+                    <p class="d_val"></b> ACCOUNTING</p>
+                </div>
+                <div class="grade">B</div>
+
+                <div class="sub">
+                    <img src="img/arrow.png" alt="arrow" class="arrow">
+                    <p class="d_val"></b> INFORMATION AND COMMUNICATION TECHNOLOGY</p>
+                </div>
+                <div class="grade">B</div>
+
+                <div class="sub">
+                    <img src="img/arrow.png" alt="arrow" class="arrow">
+                    <p class="d_val"></b> COMMON GENERAL TEST</p>
+                </div>
+                <div class="grade mark">060</div>
+                
+                <div class="sub">
+                    <img src="img/arrow.png" alt="arrow" class="arrow">
+                    <p class="d_val"></b>General English</p>
+                </div>
+                <div class="grade">B</div>
+                
+
+            </div>
             
             
             
     </div>
+    <div class="extra">
+        <button class="adjust"></button>
+        <button class="b2 green">Print</button>
+    <button class="b2 bluebottom">Other Examination Results</button>
+    </div>
+    <div class="footer">
+        <img src="" alt="">
+    </div>
+    
 </body>
 <script>
     function validateForm() {
         var exam = document.getElementById("exam").value;
         var year = document.getElementById("year").value;
+        var val = document.getElementById("val").value;
+        var warning = document.getElementById("w");
+        document.getElementById("details").hidden = true;
         if (exam === "") {
-            alert("Please select an exam.");
+            warning.textContent = "Please select an exam";
+            warning.hidden = false;
             return false; 
         }else if(year === ""){
-            alert("Please select a year.");
-            return false; 
+            warning.textContent = "Please select a year";
+            warning.hidden = false;
+            return false;
+        }else if(val === ""){
+            warning.textContent = "Please enter your index";
+            warning.hidden = false;
+            return false;
         }
-        return true; 
+        else{
+            
+            if(val === "6328180" || val === "200433201442"){
+                warning.hidden = true;
+                document.getElementById("details").hidden = false;
+            }else{
+                warning.textContent = "Invalid Index";
+                warning.hidden = false;
+                return false;
+            }
+            
+        }
+        
+        
+        
+    }
+    function resetForm(){
+        var exam = document.getElementById("exam");
+        var year = document.getElementById("year");
+        var warning = document.getElementById("w");
+        var val = document.getElementById("val");
+
+        warning.hidden = true;
+        exam.value = "";
+        year.value = "";
+        val.value = "";
+        enableStuff();
+    }
+    function enableStuff(){
+        var exam = document.getElementById("exam").value;
+        var state;
+        if(exam === ""){
+            state = true;
+            document.getElementById("year").value = "";
+        }else{
+            state = false;
+            
+        }
+        document.getElementById("year").disabled = state;
+        document.getElementById("type").disabled = state;
+        document.getElementById("val").disabled = state;
+
+
     }
 </script>
 </html>
