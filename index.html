@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam Results</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
 </head>
 <style>
     body{
-        padding: 1%;
-        font-family: 'calibri';
+        padding: 5%;
+        font-family: 'Roboto';
         
         margin: 0;
     }
@@ -39,8 +40,12 @@
         width: 90%;
         margin: auto;
         background-color: yellow;
-        border: 5px solid #DE3030;
+        border: 8px ridge #DE3030;
         padding: 2%;
+    }
+    .desc{
+        text-align: center;
+        font-weight: bold;
     }
     #sinhala{
         font-size: 14px;
@@ -49,7 +54,30 @@
         font-size: 16px;
     }
     #tamil{
-        font-size: 11px;
+        font-size: 12px;
+    }
+    .options{
+        width: 90%;
+        justify-content: space-around;
+        align-items: center;
+        margin: auto;
+        margin-top: 30px;
+        padding: 10px;
+        display: flex;
+    }
+    .r1{
+        padding: 10px 15px 10px 15px;
+        color: #4E5155;
+        font-weight: bold;
+        font-size: 14px;
+        border-radius: 3px;
+        border: none;
+    }
+    #year{
+        width: 25%;
+    }
+    #exam{
+        width: 30%;
     }
 
 </style>
@@ -57,7 +85,7 @@
     <center><img src="img/banner.png" alt="banner"></center>
     <div class="container">
         <p class="title">FIND YOUR EXAM RESULTS HERE</p>
-        
+        <br>
             <div class="yellow">
                 <p class="desc"><span id="sinhala">විභාග ප්‍රතිඵල ශ්‍රී ලංකා රජය සතු දේපලක් වන අතර, නිසි අවසරයකින් තොරව අයදුම්කරුගේ නොවන ප්‍රතිඵල උපුටා ගැනීම, ළඟ තබා ගැනීම, වෙබ් අඩවියක හෝ සමාජ මාධ්‍ය ජාලවල පල කිරීම හෝ වෙනත් ආකාරයකින් ප්‍රසිද්ධ කිරීම සපුරා තහනම් වන අතර, දඬුවම් ලැබිය හැකි වරදකි.</span> <br> <br>
 
@@ -65,7 +93,35 @@
                     
                     <span id="tamil">பரீட்சைப் பெறுபேறுகள் இலங்கை அரசாங்கத்தின் சொத்தாகும். உரிய அனுமதியின்றி பரீட்சார்த்திகளுக்கு உரியதல்லாத பெறுபேறுகளை பிரதிசெய்தல், தம்வசம் வைத்திருத்தல், இணையத்தளமொன்றிற்குள்ளோ அல்லது சமூக வலைத்தளங்களிலோ பதிவேற்றம் செய்தல் அல்லது வேறு வடிவங்களில் பிரசுரித்தல் என்பன முற்றாகத் தடைசெய்யப்பட்டுள்ளதுடன் தண்டனைக்குரிய குற்றமுமாகும்.</span></p>
             </div>
-        
+            <div class="options">
+                <select name="exam" id="exam" class="r1">
+                    <option value="" selected>Select the exam</option>
+                    <option value="invalid">G.C.E (A/L) EXAMINATION</option>
+                    <option value="valid">G.C.E (O/L) EXAMINATION</option>
+                </select>
+                <select name="year" id="year" class="r1" selected>
+                    <option value="">Select the year</option>
+                    <option value="invalid">2022 / 2023</option>
+                    <option value="valid">2023 / 2024</option>
+                </select>
+            </div>
+            
+            
+            
     </div>
 </body>
+<script>
+    function validateForm() {
+        var exam = document.getElementById("exam").value;
+        var year = document.getElementById("year").value;
+        if (exam === "") {
+            alert("Please select an exam.");
+            return false; 
+        }else if(year === ""){
+            alert("Please select a year.");
+            return false; 
+        }
+        return true; 
+    }
+</script>
 </html>
